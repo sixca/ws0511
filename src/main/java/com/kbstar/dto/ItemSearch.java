@@ -8,7 +8,7 @@ import lombok.*;
 @Getter
 @ToString
 public class ItemSearch {
-    private String name;
+    private String item_name;
     private Integer price;
     private String startdate;
     private String enddate;

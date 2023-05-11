@@ -11,11 +11,13 @@ import java.util.Date;
 @Getter
 @ToString
 public class Item {
-    private int id;
-    private String name;
+    private int item_id;
+    private String item_name;
+    private String img;
+    private String content;
     private int price;
-    private String imgname;
     private Date rdate;
+    private Date udate;
 
 //    private MultipartFile img;
 //

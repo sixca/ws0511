@@ -1,9 +1,9 @@
 package com.kbstar.service;
 
 
-import com.kbstar.dto.Cust;
+import com.kbstar.dto.Member;
 import com.kbstar.frame.KBService;
-import com.kbstar.mapper.CustMapper;
+import com.kbstar.mapper.MemberMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,15 +11,15 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Slf4j
 @Service
-public class CustService implements KBService<String, Cust> {
+public class MemberService implements KBService<String, Member> {
 
     @Autowired
-    CustMapper mapper;
+    MemberMapper mapper;
     @Override
-    public void register(Cust cust) throws Exception {
-        mapper.insert(cust);
+    public void register(Member member) throws Exception {
+        mapper.insert(member);
         //mapper.insert(cust);
-        log.info("Send Mail .........."+cust.getId());
+        log.info("Send Mail .........."+ member.getMember_id());
     }
 
     @Override
@@ -28,16 +28,16 @@ public class CustService implements KBService<String, Cust> {
     }
 
     @Override
-    public void modify(Cust cust) throws Exception {
-        mapper.update(cust);
+    public void modify(Member member) throws Exception {
+        mapper.update(member);
     }
 
     @Override
-    public Cust get(String s) throws Exception {
+    public Member get(String s) throws Exception {
         return mapper.select(s);
     }
     @Override
-    public List<Cust> get() throws Exception {
+    public List<Member> get() throws Exception {
         return mapper.selectall();
     }
 

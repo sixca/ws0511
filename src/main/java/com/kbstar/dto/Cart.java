@@ -11,11 +11,14 @@ import java.util.Date;
 @Getter
 @ToString
 public class Cart {
-    private int id;
-    private String cust_id;
+    private int cart_id;
     private int item_id;
+    private int member_id;
     private int cnt;
     private Date rdate;
+    private Date udate;
+
+
 
 //    public Cart(String cust_id, int item_id, int cnt) {
 //        this.cust_id = cust_id;

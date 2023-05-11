@@ -4,16 +4,16 @@ import lombok.*;
 
 import java.util.Date;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
 @ToString
-public class Board {
-    private int id;
-    private String cust_id;
-    private String content;
-    private int cnt;
+public class Order_tb {
+    private int order_id;
+    private int member_id;
+    private int item_id;
+    private int price;
     private Date rdate;
+    private int valid;
 }
