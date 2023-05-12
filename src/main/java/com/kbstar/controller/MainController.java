@@ -16,19 +16,19 @@ public class MainController {
     @RequestMapping("/login")
     public String login(Model model) {
         model.addAttribute("main", "login");
-        return "login";
+        return "index";
     }
 
     @RequestMapping("/password")
     public String password(Model model) {
         model.addAttribute("main", "password");
-        return "password";
+        return "index";
     }
 
     @RequestMapping("/chart")
     public String chart(Model model) {
         model.addAttribute("main", "charts");
-        return "charts";
+        return "index";
     }
 
     @RequestMapping("/401")
@@ -52,12 +52,19 @@ public class MainController {
     @RequestMapping("/register")
     public String register(Model model) {
         model.addAttribute("main", "register");
-        return "register";
+        return "index";
     }
 
     @RequestMapping("/table")
     public String table(Model model) {
         model.addAttribute("main", "tables");
-        return "tables";
+        return "index";
+    }
+
+
+    @RequestMapping("/product")
+    public String product(Model model) {
+        model.addAttribute("main", "registerProduct");
+        return "index";
     }
 }

@@ -5,23 +5,18 @@ import com.kbstar.dto.Item;
 import com.kbstar.dto.ItemSearch;
 import com.kbstar.frame.KBService;
 import com.kbstar.mapper.ItemMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ItemService implements KBService<Integer, Item> {
-    @Autowired
-    ItemMapper mapper;
 
-    /**
-     * 등록 및 가입 진행
-     * argument: Object
-     * return: null
-     *
-     * @param item
-     */
+    private final ItemMapper mapper;
+
     @Override
     public void register(Item item) throws Exception {
         mapper.insert(item);
