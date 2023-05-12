@@ -2,6 +2,7 @@ package com.kbstar.dto;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -11,12 +12,10 @@ import java.util.Date;
 @Getter
 @ToString
 public class Review {
-    private int review_id;
-    private int member_id;
-    private int item_id;
-    private int type;
+    private int id;
+    private int userId;
+    private int itemId;
     private String title;
-    private Date rdate;
-    private Date udate;
-    private String content;
+    private String review;
+    private int rate;
 }

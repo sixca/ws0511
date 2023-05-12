@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 @Mapper
 public interface ItemMapper extends KBMapper<Integer, Item> {
-    public List<Item> search(ItemSearch ms);
+    List<Item> search(ItemSearch ms);
 
 }

@@ -9,7 +9,8 @@ import lombok.*;
 @Getter
 @ToString
 public class Adm {
-    private String id;
+    private int id;
+    private String adminId;
     private String pwd;
     private int lev;
 }
