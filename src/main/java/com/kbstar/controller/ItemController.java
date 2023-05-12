@@ -5,7 +5,6 @@ import com.kbstar.service.ItemService;
 import com.kbstar.util.FileUploadUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,4 +51,25 @@ public class ItemController {
 
         return "redirect:/register";
     }
+
+    @RequestMapping("/updateimpl")
+    public String updateimpl(Model model, Item item) throws Exception {
+
+        MultipartFile mf =  item.getImgName();
+
+        //파일에서 이미지를 끄집어 낸다.
+        String imgname = mf.getOriginalFilename();
+
+        if (imgname.equals("") || imgname == null) {
+            service.modify(item);
+        } else {
+            item.setImg(imgname);
+            service.modify(item);
+            FileUploadUtil.saveFile(mf, uploadimgdir);
+            //이미지 저장 디렉토리에 이미지를 저장한다.
+            //우리가 업로드한 파일이 원하는 폴더로 들어간다(static으로 호출해서 함수 사용)
+        }
+        return "index";
+    }
+
 }
