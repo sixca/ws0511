@@ -3,11 +3,8 @@
         PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kbstar.mapper.ItemMapper">
-<!--custDTO = cust-->
-    <select id="select" parameterType="String" resultType="item">
-    -- select 하면 String이 들어오고 item를 리턴
-        SELECT * FROM item WHERE id=#{id}
-        -- 입력한 값이 id가 됨
+    <select id="select" parameterType="int" resultType="item">
+        SELECT * FROM item WHERE id=#{id} AND is_valid = 1
     </select>
 
     <select id="selectall" resultType="item">
@@ -23,12 +20,12 @@
     </insert>
 
     <update id="update" parameterType="item">
-        UPDATE item SET name=#{name},price=#{price},imgname=#{imgname} WHERE id=#{id}
+        UPDATE item SET name=#{name},price=#{price},img=#{img}, color=#{color}, item_size = #{itemSize}, udate=SYSTIMESTAMP WHERE id=#{id}
     </update>
 
-    <delete id="delete" parameterType="String">
+    <delete id="delete" parameterType="int">
     -- id가 string으로 들어오면 해당 id를 삭제한다
-        DELETE FROM item WHERE id=#{id}
+        UPDATE item SET name=#{name},price=#{price},img=#{img}, color=#{color}, item_size = #{itemSize}, udate=SYSTIMESTAMP, is_valid = 0 WHERE id=#{id}
     </delete>
 
 </mapper>

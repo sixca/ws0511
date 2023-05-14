@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,14 +29,11 @@ public class ItemController {
         return "index";
     }
 
-
-
-    @RequestMapping("/detail")
-    public String detail(Model model, int id) throws Exception {
-        Item item = null;
-        item = service.get(id);
+    @RequestMapping("/{id}")
+    public String detail(Model model, @PathVariable int id) throws Exception {
+        Item item = service.get(id);
         model.addAttribute("item", item);
-        model.addAttribute("main", "productDetail");
+        model.addAttribute("main", "updateProduct");
         return "index";
     }
 
@@ -49,31 +47,36 @@ public class ItemController {
 
         //db에 파일 저장
         service.register(item);
+
         //이미지 저장 디렉토리에 이미지를 저장한다.
         //우리가 업로드한 파일이 원하는 폴더로 들어간다(static으로 호출해서 함수 사용)
         FileUploadUtil.saveFile(mf, uploadimgdir);
 
-        return "redirect:/item/detail?id="+item.getId();
+        return "redirect:/";
     }
 
     @RequestMapping("/updateimpl")
     public String updateimpl(Model model, Item item) throws Exception {
-
+        System.out.println("아이템아이디는 = " + item.getId());
         MultipartFile mf =  item.getImgName();
-
         //파일에서 이미지를 끄집어 낸다.
         String imgname = mf.getOriginalFilename();
-
         if (imgname.equals("") || imgname == null) {
             service.modify(item);
         } else {
             item.setImg(imgname);
+
             service.modify(item);
             FileUploadUtil.saveFile(mf, uploadimgdir);
             //이미지 저장 디렉토리에 이미지를 저장한다.
             //우리가 업로드한 파일이 원하는 폴더로 들어간다(static으로 호출해서 함수 사용)
         }
-        return "index";
+        return "redirect:/item/" + item.getId();
     }
 
+    @RequestMapping("/deleteimpl")
+    public String deleteimpl(int id) throws Exception {
+        service.remove(id);
+        return "redirect:/";
+    }
 }

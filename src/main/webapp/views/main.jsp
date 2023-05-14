@@ -94,7 +94,7 @@
                     <tbody>
                     <c:forEach var="item" items="${items}">
                         <tr>
-                            <td>${item.id}</td>
+                            <td><a href="/item/${item.id}">${item.id}</a></td>
                             <td>${item.name}</td>
                             <td>${item.price}</td>
                             <td>${item.itemSize}</td>

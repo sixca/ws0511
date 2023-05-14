@@ -2,11 +2,9 @@ package com.kbstar.service;
 
 
 import com.kbstar.dto.Item;
-import com.kbstar.dto.ItemSearch;
 import com.kbstar.frame.KBService;
 import com.kbstar.mapper.ItemMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,6 +30,7 @@ public class ItemService implements KBService<Integer, Item> {
         mapper.update(item);
     }
 
+
     @Override
     public Item get(Integer id) throws Exception {
         return mapper.select(id);
@@ -42,7 +41,4 @@ public class ItemService implements KBService<Integer, Item> {
         return mapper.selectall();
     }
 
-    public List<Item> search(ItemSearch ms) throws Exception{
-        return mapper.search(ms);
-    }
 }
