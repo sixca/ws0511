@@ -28,12 +28,16 @@ public class ItemController {
         return "index";
     }
 
-    @RequestMapping("/update")
-    public String update(Model model){
-        model.addAttribute("main","updateProduct");
+
+
+    @RequestMapping("/detail")
+    public String detail(Model model, int id) throws Exception {
+        Item item = null;
+        item = service.get(id);
+        model.addAttribute("item", item);
+        model.addAttribute("main", "productDetail");
         return "index";
     }
-
 
     @RequestMapping("/registerImpl")
     public String registerImpl(Model model, Item item) throws Exception {
@@ -49,7 +53,7 @@ public class ItemController {
         //우리가 업로드한 파일이 원하는 폴더로 들어간다(static으로 호출해서 함수 사용)
         FileUploadUtil.saveFile(mf, uploadimgdir);
 
-        return "redirect:/register";
+        return "redirect:/item/detail?id="+item.getId();
     }
 
     @RequestMapping("/updateimpl")

@@ -1,14 +1,29 @@
 package com.kbstar.controller;
 
+import com.kbstar.dto.Item;
+import com.kbstar.service.ItemService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
+@RequiredArgsConstructor
 public class MainController {
+
+    private final ItemService service;
 
     @RequestMapping("/")
     public String main(Model model) {
+        List<Item> items = null;
+        try {
+            items = service.get();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        model.addAttribute("items", items);
         model.addAttribute("main", "main");
         return "index";
     }
