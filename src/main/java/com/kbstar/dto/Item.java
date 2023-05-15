@@ -24,7 +24,7 @@ public class Item {
     private MultipartFile imgName;
     private int price;
 
-    public Item(int id, String name, String img, String itemSize, String color,int price) {
+    public Item(String name, String img, String itemSize, String color,int price) {
         this.name = name;
         this.img = img;
         this.itemSize = itemSize;

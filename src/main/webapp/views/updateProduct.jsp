@@ -50,8 +50,8 @@
         <div class="col-lg-10 col-xl-9 mx-auto">
             <form id="update_form">
             <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
-                <input name="id" type="hidden" value="${item.id}">
-                <input name="img" type="hidden" value="${item.img}">
+                <input name="id" type="number" value="${item.id}" style="display: none" />
+                <input name="img" type="hidden" value="${item.img}" />
                 <input class="d-none mt-5 ml-5" type="file" name="imgName" style="display: none" id="imgname">
                 <a href="javascript:void(0);" onclick="$('#imgname').trigger('click')">
                     <img src="/uimg/${item.img}" id="preview" style="height: 500px; width: 500px">

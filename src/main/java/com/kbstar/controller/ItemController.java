@@ -55,9 +55,8 @@ public class ItemController {
         return "redirect:/";
     }
 
-    @RequestMapping("/updateimpl")
-    public String updateimpl(Model model, Item item) throws Exception {
-        System.out.println("아이템아이디는 = " + item.getId());
+    @RequestMapping("/updateImpl")
+    public String updateImpl(Model model, Item item) throws Exception {
         MultipartFile mf =  item.getImgName();
         //파일에서 이미지를 끄집어 낸다.
         String imgname = mf.getOriginalFilename();
