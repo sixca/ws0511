@@ -1,1 +1,4 @@
 # Project exclude paths
+!/src/main/resources/application.properties
+.DS_Store
+application.properties

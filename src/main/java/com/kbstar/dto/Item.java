@@ -3,7 +3,7 @@ package com.kbstar.dto;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,19 +15,20 @@ public class Item {
     private String registerId;
     private String name;
     private String img;
+    private String itemSize;
     private String review;
     private String color;
-    private Date rdate;
-    private Date udate;
+    private LocalDateTime rdate;
+    private LocalDateTime udate;
     private String isValid;
+    private MultipartFile imgName;
+    private int price;
 
-//    private MultipartFile img;
-//
-//    public Item(int id, String name, int price, String imgname, Date rdate) {
-//        this.id = id;
-//        this.name = name;
-//        this.price = price;
-//        this.imgname = imgname;
-//        this.rdate = rdate;
-//    }
+    public Item(int id, String name, String img, String itemSize, String color,int price) {
+        this.name = name;
+        this.img = img;
+        this.itemSize = itemSize;
+        this.color = color;
+        this.price = price;
+    }
 }
