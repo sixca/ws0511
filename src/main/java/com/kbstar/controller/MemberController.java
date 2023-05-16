@@ -27,12 +27,36 @@ public class MemberController {
 
     String dir = "member/";
 
+    @RequestMapping("/add")
+    public String add(Model model){
+        model.addAttribute("main", dir+"add");
+        return "index";
+    }
+
+    @RequestMapping("/addimpl")
+    public String addimpl(Model model, @Validated Member member, Errors errors) throws Exception {
+        if(errors.hasErrors()){
+            List<ObjectError> es = errors.getAllErrors();
+            String msg ="";
+            for(ObjectError e:es){
+                msg += "<h4>";
+                msg += e.getDefaultMessage();
+                msg += "</h4>";
+            }
+            throw new Exception(msg);
+        }
+        member.setPassword(encoder.encode(member.getPassword()));
+        memberService.register(member);
+        return "redirect:/member/all";
+    }
+
+
     @RequestMapping("/all")
     public String all(Model model) throws Exception {
         List<Member> list = null;
         list = memberService.get();
         model.addAttribute("mlist", list);
-        model.addAttribute("center", dir+"all");
+        model.addAttribute("main", dir+"all");
         return "index";
     }
 
@@ -43,10 +67,12 @@ public class MemberController {
         try {
             member = memberService.get(id);
         } catch (Exception e) {
+            e.printStackTrace();
+//            log.info(dir+detail());
             throw new Exception("시스템 장애");
         }
         model.addAttribute("memberinfo", member);    //뿌릴 정보를 준비하고
-        model.addAttribute("center", dir+"detail");     //센터에 정보를 뿌림
+        model.addAttribute("main", dir+"detail");     //센터에 정보를 뿌림
         return "index";
     }
 
@@ -64,7 +90,7 @@ public class MemberController {
         }
         member.setPassword(encoder.encode(member.getPassword())); //password 암호화
         memberService.modify(member);
-        return "redirect:/member/detail?id="+member.getMember_id(); //수정이 일어난 후, "/detail?id="로 다시 보냄
+        return "redirect:/member/detail?id="+member.getId(); //수정이 일어난 후, "/detail?id="로 다시 보냄
     }
 
     @RequestMapping("/deleteimpl")

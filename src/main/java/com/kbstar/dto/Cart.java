@@ -12,12 +12,12 @@ import java.time.LocalDateTime;
 @ToString
 public class Cart {
     private int id;
-    private String userId;
-    private String itemId;
+    private int userId;
+    private int itemId;
     private int cnt;
     private LocalDateTime rdate;
 
-    public Cart(String userId, String itemId, int cnt) {
+    public Cart(int userId, int itemId, int cnt) {
         this.userId = userId;
         this.itemId = itemId;
         this.cnt = cnt;

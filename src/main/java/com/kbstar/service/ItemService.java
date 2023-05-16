@@ -1,6 +1,5 @@
 package com.kbstar.service;
 
-
 import com.kbstar.dto.Item;
 import com.kbstar.frame.KBService;
 import com.kbstar.mapper.ItemMapper;
@@ -29,7 +28,6 @@ public class ItemService implements KBService<Integer, Item> {
     public void modify(Item item) throws Exception {
         mapper.update(item);
     }
-
 
     @Override
     public Item get(Integer id) throws Exception {

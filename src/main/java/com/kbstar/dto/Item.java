@@ -23,6 +23,7 @@ public class Item {
     private String isValid;
     private MultipartFile imgName;
     private int price;
+    private int cnt;
 
     public Item(String name, String img, String itemSize, String color,int price) {
         this.name = name;
