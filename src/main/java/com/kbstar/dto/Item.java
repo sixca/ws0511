@@ -21,6 +21,7 @@ public class Item {
     private LocalDateTime rdate;
     private LocalDateTime udate;
     private String isValid;
+
     private MultipartFile imgName;
     private int price;
     private int cnt;

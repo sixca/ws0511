@@ -103,6 +103,12 @@ public class MainController {
         return "redirect:/";
     }
 
+    @RequestMapping("/sumcart")
+    public String sumcart(Model model){
+        model.addAttribute("main", "sumcart");
+        return "index";
+    }
+
     @RequestMapping("/chart")
     public String chart(Model model) {
         model.addAttribute("main", "charts");
