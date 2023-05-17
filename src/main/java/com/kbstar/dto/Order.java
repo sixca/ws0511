@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Setter
 public class Order {
     private int id;
-    private int userId;
+    private int memberId;
     private int price;
     private LocalDateTime rdate;
     private String name;

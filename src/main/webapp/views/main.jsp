@@ -6,46 +6,8 @@
     <div class="container-fluid px-4">
         <h1 class="mt-4">Dashboard</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active">Dashboard</li>
+            <li class="breadcrumb-item active">Male Fashion 관리자 화면입니다.</li>
         </ol>
-        <div class="row">
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-primary text-white mb-4">
-                    <div class="card-body">Primary Card</div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">View Details</a>
-                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-warning text-white mb-4">
-                    <div class="card-body">Warning Card</div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">View Details</a>
-                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-success text-white mb-4">
-                    <div class="card-body">Success Card</div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">View Details</a>
-                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-danger text-white mb-4">
-                    <div class="card-body">Danger Card</div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">View Details</a>
-                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="row">
             <div class="col-xl-6">
                 <div class="card mb-4">
@@ -144,7 +106,7 @@
                             minAnnounceInterval: 15000,
                             announcementFormatter: function (allSeries, newSeries, newPoint) {
                                 if (newPoint) {
-                                    return 'New point added. Value: ' + newPoint.y;
+                                    return 'New data point added.';
                                 }
                                 return false;
                             }
@@ -154,6 +116,19 @@
                         csvURL: urlInput.value,
                         enablePolling: pollingCheckbox.checked === true,
                         dataRefreshRate: parseInt(pollingInput.value, 10)
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    yAxis: {
+                        title: {
+                            text: '총금액(원)'
+                        }
+                    },
+                    xAxis: {
+                        title: {
+                            text: '실시간 장바구니 현황'
+                        }
                     }
                 });
                 if (pollingInput.value < 1 || !pollingInput.value) {
