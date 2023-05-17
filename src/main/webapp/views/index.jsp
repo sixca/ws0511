@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +16,15 @@
     <link href="/css/styles.css" rel="stylesheet"/>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+
+    <%-- 하이차트 --%>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
 </head>
 <body class="sb-nav-fixed">
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -32,16 +43,37 @@
     </form>
     <!-- Navbar-->
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+
+
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-               aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+            <c:choose>   <%-- 로그인 됐을 때, 안 됐을 때 메뉴 달리 표현 --%>
+                <c:when test="${loginadm == null}">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+                   aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                </c:when>
+                <c:otherwise>
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+                   aria-expanded="false">
+                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">관리자 ${loginadm.adminId}님</span>
+                    <img class="img-profile rounded-circle"
+                         src="img/undraw_profile.svg">
+                </a>
+                </c:otherwise>
+            </c:choose>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <c:choose>   <%-- 로그인 됐을 때, 안 됐을 때 메뉴 달리 표현 --%>
+                <c:when test="${loginadm == null}">
+                <li><a class="dropdown-item" href="/register">Make Account</a></li>
+                <li><a class="dropdown-item" href="/login">Activity Log</a></li>
+                </c:when>
+                <c:otherwise>
                 <li><a class="dropdown-item" href="#">Settings</a></li>
-                <li><a class="dropdown-item" href="#">Activity Log</a></li>
                 <li>
                     <hr class="dropdown-divider"/>
                 </li>
-                <li><a class="dropdown-item" href="#">Logout</a></li>
+                <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                 </c:otherwise>
+            </c:choose>
             </ul>
         </li>
     </ul>
@@ -56,6 +88,7 @@
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                         Dashboard
                     </a>
+                    <c:if test="${loginadm != null}">
                     <div class="sb-sidenav-menu-heading">상품 및 주문</div>
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts"
                        aria-expanded="false" aria-controls="collapseLayouts">
@@ -114,10 +147,20 @@
                         <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                         리뷰
                     </a>
-                    <a class="nav-link" href="/table">
-                        <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                        Tables
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts2"
+                       aria-expanded="false" aria-controls="collapseLayouts">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        회원
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
+                    <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne"
+                         data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="/member/add">회원 등록</a>
+                            <a class="nav-link" href="/member/all">회원 리스트</a>
+                        </nav>
+                    </div>
+                    </c:if>
                 </div>
             </div>
             <div class="sb-sidenav-footer">

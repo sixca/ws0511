@@ -4,10 +4,18 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kbstar.mapper.MemberMapper">
     <select id="select" parameterType="int" resultType="member">
-        SELECT * FROM MEMBER WHERE id=#{id} AND is_valid = 1
+        SELECT * FROM MEMBER WHERE id=#{id} AND valid = '1'
     </select>
-
     <select id="selectall" resultType="member">
-        SELECT * FROM MEMBER WHERE is_valid = 1
+        SELECT * FROM MEMBER WHERE valid = '1'
     </select>
+    <insert id="insert" parameterType="member">
+        INSERT INTO member VALUES (member_seq.NEXTVAL,#{memberId},#{name},#{password},SYSDATE, #{valid})
+    </insert>
+    <update id="update" parameterType="member">
+        UPDATE member SET member_id=#{memberId}, name=#{name}, password=#{password}, valid=#{valid} WHERE id=#{id}
+    </update>
+    <delete id="delete" parameterType="Integer">
+        DELETE FROM member WHERE id=#{id}
+    </delete>
 </mapper>

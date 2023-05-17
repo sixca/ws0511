@@ -11,9 +11,13 @@ public class WebMvcConfig implements WebMvcConfigurer {
     //이미지 dir
     @Value("${imgdir}")
     String imgdir;
+    //로그 dir (카트 차트용)
+    @Value("${logdir}")
+    String logdir;
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/uimg/**").addResourceLocations(imgdir);
+        registry.addResourceHandler("/logs/**").addResourceLocations(logdir);
     }
 }

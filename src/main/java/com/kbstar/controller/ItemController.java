@@ -1,11 +1,14 @@
 package com.kbstar.controller;
 
 import com.kbstar.dto.Item;
+import com.kbstar.service.CartService;
 import com.kbstar.service.ItemService;
 import com.kbstar.util.FileUploadUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +22,9 @@ import org.springframework.web.multipart.MultipartFile;
 public class ItemController {
 
     private final ItemService service;
+
+    @Autowired
+    CartService cartService;
 
     @Value("${uploadimgdir}")
     String uploadimgdir;
@@ -77,5 +83,11 @@ public class ItemController {
     public String deleteimpl(int id) throws Exception {
         service.remove(id);
         return "redirect:/";
+    }
+
+    @Scheduled(cron = "*/5 * * * * *")
+    public void cronSumCartUpdate() throws Exception {
+        int num = cartService.SumCart();
+        log.info(num+"");
     }
 }

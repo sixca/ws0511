@@ -16,6 +16,8 @@ import java.util.Map;
 @Slf4j
 public class CartService {
 
+
+
     private final CartMapper cartMapper;
 
     public void addCart(int userId, int itemId) {
@@ -59,4 +61,7 @@ public class CartService {
         cartMapper.deleteCart(userId);
     }
 
+    public int SumCart() throws Exception {
+        return cartMapper.sumcart();
+    }
 }
