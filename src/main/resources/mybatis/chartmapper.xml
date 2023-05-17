@@ -5,7 +5,7 @@
 <mapper namespace="com.kbstar.mapper.ChartMapper">
     <select id="getMonthlyTotal" resultType="chart">
         <![CDATA[
-        SELECT TO_NUMBER(TO_CHAR(rdate,'MM')) AS month, SUM(price * cnt) AS total FROM order_tb
+        SELECT TO_NUMBER(TO_CHAR(rdate,'MM')) AS month, SUM(price) AS total FROM order_tb
         GROUP BY TO_NUMBER(TO_CHAR(rdate, 'MM'))
         ORDER BY 1
         ]]>

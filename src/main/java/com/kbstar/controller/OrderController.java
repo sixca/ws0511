@@ -36,7 +36,7 @@ public class OrderController {
     @RequestMapping("/orderImpl")
     public String orderPage(Order order, HttpSession session) {
         Member user = (Member) session.getAttribute("loginUser");
-        order.setUserId(user.getId());
+        order.setMemberId(user.getId());
         orderService.insert(order);
         cartService.deleteCart(user.getId());
         return "redirect:/cart/" + user.getId();

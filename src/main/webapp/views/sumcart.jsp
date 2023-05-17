@@ -2,6 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<%--이렇게 확인만하고, 실제 화면은 main.jsp에서 차트를 넣었음--%>
+
 <script>
     let sumcartchart = {
         init:function (){
@@ -84,5 +86,5 @@
             </div>
         </div>
     </div>
-    <!-- /.container-fluid -->
 </div>
+<!-- cartChart end -->
