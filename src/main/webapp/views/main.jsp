@@ -56,22 +56,13 @@
                     <div class="card-body">
                         <div id="container"></div>
                         <div class="ld-row">
-                            <label class="ld-label">
-                                Enable Polling
-                            </label>
-                            <input type="checkbox" checked="checked" id="enablePolling"/>
+                            <input type="hidden" checked="checked" id="enablePolling"/>
                         </div>
                         <div class="ld-row">
-                            <label class="ld-label">
-                                Polling Time (Seconds)
-                            </label>
-                            <input class="ld-time-input" type="number" value="2" id="pollingTime"/>
+                            <input class="ld-time-input" type="hidden" value="2" id="pollingTime"/>
                         </div>
                         <div class="ld-row">
-                            <label class="ld-label">
-                                CSV URL
-                            </label>
-                            <input class="ld-url-input" type="text" id="fetchURL"/>
+                            <input class="ld-url-input" type="hidden" id="fetchURL"/>
                         </div>
                     </div>
                 </div>
@@ -80,7 +71,7 @@
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-chart-bar me-1"></i>
-                        Bar Chart Example
+                        Monthly Sales (Live)
                     </div>
                     <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
                 </div>
@@ -145,7 +136,7 @@
                         type: 'spline'
                     },
                     title: {
-                        text: 'Cart Chart (Live Data)'
+                        text: ''
                     },
                     accessibility: {
                         announceNewData: {
