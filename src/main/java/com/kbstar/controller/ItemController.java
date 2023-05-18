@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @Controller
 @Slf4j
 @RequiredArgsConstructor
@@ -32,6 +34,20 @@ public class ItemController {
     @RequestMapping("/register")
     public String register(Model model){
         model.addAttribute("main","registerProduct");
+        return "index";
+    }
+
+    @RequestMapping("/productall")
+    public String productall(Model model){
+
+        List<Item> items = null;
+        try {
+            items = service.get();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        model.addAttribute("items", items);
+        model.addAttribute("main","productall");
         return "index";
     }
 
