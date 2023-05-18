@@ -62,7 +62,6 @@ public class MemberController {
 
     @RequestMapping("/detail")   //로그인 사용자 아이디 클릭 시 정보조회
     public String detail(Model model, Integer id) throws Exception {
-        // /Member/detail?id=${obj.id} 써먹으려면 String id를 받아야한다는데;;
         Member member =null;
         try {
             member = memberService.get(id);

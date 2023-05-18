@@ -2,8 +2,10 @@ package com.kbstar.controller;
 
 import com.kbstar.dto.Adm;
 import com.kbstar.dto.Item;
+import com.kbstar.dto.Review;
 import com.kbstar.service.AdmService;
 import com.kbstar.service.ItemService;
+import com.kbstar.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,8 @@ public class MainController {
 
     @Autowired
     AdmService admService;
+    @Autowired
+    ReviewService reviewService;
     @Autowired
     private BCryptPasswordEncoder encoder;
 
@@ -145,6 +149,7 @@ public class MainController {
         model.addAttribute("main", "registerProduct");
         return "index";
     }
+
 
 
 }

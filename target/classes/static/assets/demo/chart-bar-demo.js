@@ -42,7 +42,7 @@ let gmtchart = {
           yAxes: [{
             ticks: {
               min: 0,
-              max: 500000,
+              max: 1000000,
               maxTicksLimit: 5
             },
             gridLines: {
