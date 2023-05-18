@@ -50,6 +50,13 @@ public class MainController {
         return "index";
     }
 
+    @RequestMapping("/test")
+    public String test(Model model) {
+        model.addAttribute("main", "test");
+        return "index";
+    }
+
+
     @RequestMapping("/password")
     public String password(Model model) {
         model.addAttribute("main", "password");
